@@ -1,31 +1,46 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <cstdio>
+#include <stack>
 
-int a[1000];
+#define MAXN 1000
+
+int a[MAXN];
 
 bool check(int n)
 {
-	for (int i = 0; i < n;)
-		if (a[i] == i)
-			i++;
-		else
-		{
-			for (int j = a[i], k = i; j >= i; j--, k++)
-				if (a[j] != k)
-					return false;
+	std::stack<int> b;
+	std::stack<int> s;
 
-			i = a[i] + 1;
+	for (int i = n; i > 0; i--)
+		b.push(i);
+
+	for (int i = 0; i < n; i++)
+	{
+		int x = a[i];
+
+		if (s.empty() || s.top() != x)
+		{
+			while (!b.empty() && b.top() <= x)
+			{
+				int y = b.top();
+				b.pop();
+				s.push(y);
+			}
+
+			if (s.empty() || s.top() != x)
+				return false;
 		}
+
+		s.pop();
+	}
 
 	return true;
 }
 
 int main()
 {
-	/*
 	freopen("input.txt", "r", stdin);
 	freopen("output.txt", "w", stdout);
-	*/
 
 	for (;;)
 	{
@@ -42,14 +57,10 @@ int main()
 			if (a[0] == 0)
 				break;
 
-			a[0]--;
 			for (int i = 1; i < n; i++)
-			{
 				scanf("%d", a + i);
-				a[i]--;
-			}
 
-			printf("%s\n", check(n) ? "YES" : "NO");
+			printf("%s\n", check(n) ? "Yes" : "No");
 		}
 
 		printf("\n");
