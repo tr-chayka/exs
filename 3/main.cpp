@@ -1,5 +1,5 @@
 #define _CRT_SECURE_NO_WARNINGS
-#define MAXN 10000
+#define MAXN 1000
 
 #include <cstdio>
 #include <ctime>
@@ -23,8 +23,10 @@ void change(char &c)
 
 int main()
 {
+	/*
 	freopen("input.txt", "r", stdin);
 	freopen("output.txt", "w", stdout);
+	*/
 
 	int tn, tm, an, am, x;
 
