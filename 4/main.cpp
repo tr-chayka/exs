@@ -193,7 +193,8 @@ int main()
         scanf("\n");
         play(gn);
 
+        printf("\n");
         if( gn < game_count)
-            printf("\n\n");
+            printf("\n");
     }
 }
